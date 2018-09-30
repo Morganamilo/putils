@@ -1,0 +1,55 @@
+pedit(1)
+========
+
+Name
+----
+pedit - edit data between pipes
+
+
+Synopsis
+--------
+*pedit* [editor [args...]]
+
+
+Description
+-----------
+pedit allows you to edit the data between two pipes via a text editor.
+
+Data is read from stdin, opened in the editor. Then once the editor
+has exited, the modified data is written to stdout.
+
+Options
+-------
+*[editor]*::
+	The editor to use, takes priority over environmental settings.
+
+*[args...]*::
+	The flags to pass to the editor.
+
+
+Examples
+--------
+foo | pedit | bar::
+	Edit the output of foo and pipe it into bar
+
+foo | pedit emacs -nw | bar::
+	Use emacs as the editor with the -nw flags.
+
+
+Environment Variables
+---------------------
+VISUAL::
+	Editor to use. The command will be split on whitespace, each flag after
+	the first being passed as an argument to the editor.
+
+EDITOR::
+	Editor to use if *VISUAL* is unset.
+
+
+See Also
+--------
+pipe(7)
+
+Authors
+-------
+Anna <morganamilo@gmail.com>
